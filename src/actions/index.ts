@@ -32,9 +32,9 @@ export const sendRoll = (id: number) => {
     if (roll.roll) {
       const dice = new Dice();
       const result = dice.roll(roll.roll);
-      msg = `${roll.description}: ${result.renderedExpression} = ${
-        result.total
-      }`;
+      msg = `${roll.description}: (${roll.roll}) ${
+        result.renderedExpression
+      } = ${result.total}`;
     }
     sendToDiscord(discord.apiKey, roll.character, msg);
   }

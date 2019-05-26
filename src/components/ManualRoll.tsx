@@ -75,9 +75,9 @@ const ManualRoll = () => {
       if (values.roll) {
         const dice = new Dice();
         const result = dice.roll(values.roll);
-        msg = `${values.description}: ${result.renderedExpression} = ${
-          result.total
-        }`;
+        msg = `${values.description}: (${values.roll}) ${
+          result.renderedExpression
+        } = ${result.total}`;
         if (values.target.trim()) {
           msg += ` against ${values.target.trim()}`;
         }
