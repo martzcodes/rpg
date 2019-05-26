@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/rpg/static/css/main.19393e92.chunk.css",
+    "main.js": "/rpg/static/js/main.41600377.chunk.js",
+    "main.js.map": "/rpg/static/js/main.41600377.chunk.js.map",
+    "runtime~main.js": "/rpg/static/js/runtime~main.37636b47.js",
+    "runtime~main.js.map": "/rpg/static/js/runtime~main.37636b47.js.map",
+    "static/js/2.e4849ac0.chunk.js": "/rpg/static/js/2.e4849ac0.chunk.js",
+    "static/js/2.e4849ac0.chunk.js.map": "/rpg/static/js/2.e4849ac0.chunk.js.map",
+    "index.html": "/rpg/index.html",
+    "precache-manifest.43b31438640b1ff2342ef77d97be5640.js": "/rpg/precache-manifest.43b31438640b1ff2342ef77d97be5640.js",
+    "service-worker.js": "/rpg/service-worker.js",
+    "static/css/main.19393e92.chunk.css.map": "/rpg/static/css/main.19393e92.chunk.css.map"
+  }
+}
