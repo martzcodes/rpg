@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0ab5edf0edb833602b304de19270eb12",
+    "revision": "66a76ade726cf4841415298b1cd5bd7a",
     "url": "/rpg/index.html"
   },
   {
-    "revision": "79e8f75c5a1bcf440b5a",
+    "revision": "6a438a62295e211c8a31",
     "url": "/rpg/static/css/main.19393e92.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rpg/static/js/2.dd997130.chunk.js"
   },
   {
-    "revision": "79e8f75c5a1bcf440b5a",
-    "url": "/rpg/static/js/main.3d6953a4.chunk.js"
+    "revision": "6a438a62295e211c8a31",
+    "url": "/rpg/static/js/main.001fd921.chunk.js"
   },
   {
     "revision": "76a1d019e53cb6e7d7e1",

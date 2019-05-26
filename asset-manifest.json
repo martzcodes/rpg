@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/rpg/static/css/main.19393e92.chunk.css",
-    "main.js": "/rpg/static/js/main.3d6953a4.chunk.js",
-    "main.js.map": "/rpg/static/js/main.3d6953a4.chunk.js.map",
+    "main.js": "/rpg/static/js/main.001fd921.chunk.js",
+    "main.js.map": "/rpg/static/js/main.001fd921.chunk.js.map",
     "runtime~main.js": "/rpg/static/js/runtime~main.37636b47.js",
     "runtime~main.js.map": "/rpg/static/js/runtime~main.37636b47.js.map",
     "static/js/2.dd997130.chunk.js": "/rpg/static/js/2.dd997130.chunk.js",
     "static/js/2.dd997130.chunk.js.map": "/rpg/static/js/2.dd997130.chunk.js.map",
     "index.html": "/rpg/index.html",
-    "precache-manifest.ed7d2d12094f310fbb68e8557dac2d48.js": "/rpg/precache-manifest.ed7d2d12094f310fbb68e8557dac2d48.js",
+    "precache-manifest.32196c4b9788fdfbde7059dfcd064132.js": "/rpg/precache-manifest.32196c4b9788fdfbde7059dfcd064132.js",
     "service-worker.js": "/rpg/service-worker.js",
     "static/css/main.19393e92.chunk.css.map": "/rpg/static/css/main.19393e92.chunk.css.map"
   }
