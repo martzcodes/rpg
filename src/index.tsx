@@ -10,8 +10,12 @@ import { loadState, saveState } from "./services/localStorage";
 import { throttle } from "lodash";
 
 const persistedState = loadState();
-console.log(persistedState);
-const store = createStore(rootReducer, persistedState);
+let store: any;
+if (persistedState) {
+  store = createStore(rootReducer, persistedState);
+} else {
+  store = createStore(rootReducer);
+}
 
 store.subscribe(
   throttle(() => {

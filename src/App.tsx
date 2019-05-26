@@ -163,7 +163,8 @@ const App: React.FC = () => {
           <Router>
             <Switch>
               <Route exact path="/" component={Landing} />
-              <Route exact path="/" component={Settings} />
+              <Route exact path="/rpg" component={Landing} />
+              <Route exact path="/settings" component={Settings} />
             </Switch>
           </Router>
         </Container>
