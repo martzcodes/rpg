@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import AddRoll from "../containers/AddRoll";
 import VisibleRollList from "../containers/VisibleRollList";
 import DiscordKey from "../containers/DiscordKey";
+import ManualRoll from "../components/ManualRoll";
 
 const useStyles = makeStyles(theme => ({} as any));
 
@@ -18,7 +19,7 @@ export default function Landing() {
     <Container maxWidth="lg" className={classes.container}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <DiscordKey />
+          <ManualRoll />
         </Grid>
         <Grid item xs={12}>
           <AddRoll />
@@ -27,6 +28,9 @@ export default function Landing() {
           <Paper className={classes.paper}>
             <VisibleRollList />
           </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <DiscordKey />
         </Grid>
       </Grid>
     </Container>
