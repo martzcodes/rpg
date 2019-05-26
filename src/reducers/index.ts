@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import todos from "./todos";
-import visibilityFilter from "./visibilityFilter";
+import rolls from "./rolls";
+import discord from "./discord";
 
 export default combineReducers({
-  todos: todos as any,
-  visibilityFilter
+  rolls: rolls as any,
+  discord
 });

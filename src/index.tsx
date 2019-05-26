@@ -10,12 +10,13 @@ import { loadState, saveState } from "./services/localStorage";
 import { throttle } from "lodash";
 
 const persistedState = loadState();
+console.log(persistedState);
 const store = createStore(rootReducer, persistedState);
 
 store.subscribe(
   throttle(() => {
     saveState({
-      todos: store.getState().todos
+      ...store.getState()
     });
   }, 1000)
 );
@@ -31,3 +32,5 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+export default store;

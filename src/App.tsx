@@ -138,7 +138,7 @@ const App: React.FC = () => {
             noWrap
             className={classes.title}
           >
-            Expanse RPG
+            RPG Discord Tools
           </Typography>
         </Toolbar>
       </AppBar>
