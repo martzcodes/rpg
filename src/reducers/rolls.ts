@@ -1,6 +1,3 @@
-import { sendToDiscord } from "../services/discord";
-import store from "..";
-
 const rolls = (state = [], action: any) => {
   switch (action.type) {
     case "ADD_ROLL":

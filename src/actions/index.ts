@@ -44,6 +44,31 @@ export const sendRoll = (id: number) => {
   };
 };
 
+export const dramaRoll = (id: number) => {
+  console.log(store.getState());
+  const discord: any = store.getState().discord;
+  const rollInd = (store.getState().rolls as any).findIndex(
+    (roll: any) => roll.id === id
+  );
+  if (discord.apiKey && rollInd !== -1) {
+    const roll: any = (store.getState().rolls as any)[rollInd];
+    // let msg = `${roll.description}`;
+    // if (roll.roll) {
+    //   const dice = new Dice();
+    //   const result = dice.roll(roll.roll);
+    //   msg = `${roll.description}: (${roll.roll}) ${
+    //     result.renderedExpression
+    //   } = ${result.total}`;
+    // }
+    // sendToDiscord(discord.apiKey, roll.character, msg);
+    console.log(roll);
+  }
+  return {
+    type: "SEND_ROLL",
+    id
+  };
+};
+
 export const removeRoll = (id: number) => ({
   type: "REMOVE_ROLL",
   id

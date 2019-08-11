@@ -1,15 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
-  createStyles,
-  TextField
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import InboxIcon from "@material-ui/icons/Inbox";
+import { createStyles, TextField } from "@material-ui/core";
 
 import {
   Theme,

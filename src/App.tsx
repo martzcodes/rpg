@@ -4,18 +4,29 @@ import Typography from "@material-ui/core/Typography";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
 import Container from "@material-ui/core/Container";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MadeWithLove from "./components/MadeWithLove";
-import Landing from "./landing/Landing";
+import Dnd from "./dnd/Dnd";
 import Settings from "./settings/Settings";
+import Expanse from "./expanse/Expanse";
+import GavelIcon from "@material-ui/icons/Gavel";
+import Brightness5Icon from "@material-ui/icons/Brightness5";
+import SettingsIcon from "@material-ui/icons/Settings";
+import {
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  IconButton,
+  MenuList,
+  MenuItem,
+  Drawer
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -101,7 +112,7 @@ const useStyles = makeStyles(
     } as any)
 );
 
-const App: React.FC = () => {
+const App = () => {
   const classes: any = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -112,67 +123,117 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            RPG Discord Tools
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        {/* <List>{navList}</List> */}
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Router>
+    <Router>
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar
+          position="absolute"
+          className={clsx(classes.appBar, open && classes.appBarShift)}
+        >
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(
+                classes.menuButton,
+                open && classes.menuButtonHidden
+              )}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component="h1"
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.title}
+            >
+              RPG Discord Tools
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose)
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <MenuList>
+            <Link to="/" style={{ textDecoration: "none" }} key="expanse">
+              <MenuItem>
+                <ListItemIcon>
+                  <Brightness5Icon />
+                </ListItemIcon>
+                <ListItemText primary="Expanse" />
+              </MenuItem>
+            </Link>
+            <Link to="/dnd" style={{ textDecoration: "none" }} key="dnd">
+              <MenuItem>
+                <ListItemIcon>
+                  <GavelIcon />
+                </ListItemIcon>
+                <ListItemText primary="DND" />
+              </MenuItem>
+            </Link>
+            <Link
+              to="/settings"
+              style={{ textDecoration: "none" }}
+              key="settings"
+            >
+              <MenuItem>
+                <ListItemIcon>
+                  <SettingsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Settings" />
+              </MenuItem>
+            </Link>
+          </MenuList>
+          {/* <List>
+          <ListItem button component={RouterLink} to="/">
+            <ListItemIcon>
+              <Brightness5Icon />
+            </ListItemIcon>
+            <ListItemText primary="Expanse" />
+          </ListItem>
+          <ListItem button component={RouterLink} to="/dnd">
+            <ListItemIcon>
+              <GavelIcon />
+            </ListItemIcon>
+            <ListItemText primary="DND" />
+          </ListItem>
+          <ListItem button component={RouterLink} to="/settings">
+            <ListItemIcon>
+              <SettingsIcon />
+            </ListItemIcon>
+            <ListItemText primary="Settings" />
+          </ListItem>
+        </List> */}
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+          <Container maxWidth="lg" className={classes.container}>
             <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/rpg" component={Landing} />
+              <Route exact path="/" component={Expanse} />
+              <Route exact path="/dnd" component={Dnd} />
+              <Route exact path="/expanse" component={Expanse} />
               <Route exact path="/settings" component={Settings} />
             </Switch>
-          </Router>
-        </Container>
-      </main>
-      <footer>
-        <MadeWithLove />
-      </footer>
-    </div>
+          </Container>
+        </main>
+        <footer>
+          <MadeWithLove />
+        </footer>
+      </div>
+    </Router>
   );
 };
 

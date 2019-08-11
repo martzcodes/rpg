@@ -4,12 +4,9 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
-  IconButton,
-  ListItemIcon,
-  SvgIcon
+  IconButton
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import InboxIcon from "@material-ui/icons/Inbox";
 
 const Roll = ({
   onClick,

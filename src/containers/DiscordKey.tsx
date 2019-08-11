@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { sendRoll, removeRoll, setDiscord } from "../actions";
+import { setDiscord } from "../actions";
 import DiscordKeyForm from "../components/DiscordKeyForm";
 
 const mapStateToProps = (state: any) => {
