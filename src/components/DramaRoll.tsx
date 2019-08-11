@@ -81,7 +81,7 @@ const DramaRoll = () => {
     const msg = `([${rawResults.join(", ")}]${sign}${Math.abs(
       bonus
     )}) Rolled a ${result.total + bonus}${
-      resultSet.size <= 2 ? " with " + rawResults[2] + " drama points" : ""
+      resultSet.size <= 2 ? " with " + rawResults[2] + " stunt points" : ""
     }`;
     console.log(msg);
 

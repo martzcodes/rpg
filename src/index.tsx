@@ -4,17 +4,18 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import rootReducer from "./reducers";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { loadState, saveState } from "./services/localStorage";
 import { throttle } from "lodash";
+import thunk from "redux-thunk";
 
 const persistedState = loadState();
 let store: any;
 if (persistedState) {
-  store = createStore(rootReducer, persistedState);
+  store = createStore(rootReducer, persistedState, applyMiddleware(thunk));
 } else {
-  store = createStore(rootReducer);
+  store = createStore(rootReducer, applyMiddleware(thunk));
 }
 
 store.subscribe(

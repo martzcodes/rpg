@@ -35,13 +35,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface State {
-  apiKey: string;
+  dataLocation: string;
 }
 
-const DiscordKeyForm = ({ onSave, apiKey }: any) => {
+const ExpanseDataForm = ({ onSave, dataLocation }: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
-    apiKey: apiKey
+    dataLocation: dataLocation
   });
 
   const handleChange = (name: keyof State) => (
@@ -58,17 +58,17 @@ const DiscordKeyForm = ({ onSave, apiKey }: any) => {
       autoComplete="off"
       onSubmit={e => {
         e.preventDefault();
-        onSave(values.apiKey);
+        onSave(values.dataLocation);
       }}
     >
       <Card className={classes.card}>
         <CardContent>
           <TextField
-            id="apiKey"
-            label="Discord API Key (full URL)"
+            id="dataLocation"
+            label="Expanse Data Location (possibly a github gist)"
             className={classes.textField}
-            value={values.apiKey}
-            onChange={handleChange("apiKey")}
+            value={values.dataLocation}
+            onChange={handleChange("dataLocation")}
             margin="normal"
           />
         </CardContent>
@@ -82,9 +82,9 @@ const DiscordKeyForm = ({ onSave, apiKey }: any) => {
   );
 };
 
-DiscordKeyForm.propTypes = {
+ExpanseDataForm.propTypes = {
   onSave: PropTypes.func.isRequired,
-  apiKey: PropTypes.string.isRequired
+  dataLocation: PropTypes.string.isRequired
 };
 
-export default DiscordKeyForm;
+export default ExpanseDataForm;
