@@ -45,7 +45,7 @@ interface State {
   target: string;
   character: string;
   description: string;
-  roll: string;
+  bonus: string;
 }
 
 const DramaRoll = () => {
@@ -54,7 +54,7 @@ const DramaRoll = () => {
     target: "",
     character: "",
     description: "",
-    roll: ""
+    bonus: ""
   });
 
   const handleChange = (name: keyof State) => (
@@ -76,31 +76,19 @@ const DramaRoll = () => {
       (res: any) => res.attributes.value
     );
     const resultSet = new Set(rawResults);
-    let msg = "";
-    if (resultSet.size <= 2) {
-      msg = `(${rawResults.join(",")}) Rolled a ${result.total} with ${
-        rawResults[2]
-      } drama points`;
-    } else {
-      msg = `(${rawResults.join(",")}) Rolled a ${result.total}`;
-    }
+    const bonus = Number.parseInt(values.bonus, 10);
+    const sign = bonus < 0 ? " - " : " + ";
+    const msg = `([${rawResults.join(", ")}]${sign}${Math.abs(
+      bonus
+    )}) Rolled a ${result.total + bonus}${
+      resultSet.size <= 2 ? " with " + rawResults[2] + " drama points" : ""
+    }`;
     console.log(msg);
 
-    // const discord: any = store.getState().discord;
-    // if (discord.apiKey) {
-    //   let msg = `${values.description}`;
-    //   if (values.roll) {
-    //     const dice = new Dice();
-    //     const result = dice.roll(values.roll);
-    //     msg = `${values.description}: (${values.roll}) ${
-    //       result.renderedExpression
-    //     } = ${result.total}`;
-    //     if (values.target.trim()) {
-    //       msg += ` against ${values.target.trim()}`;
-    //     }
-    //   }
-    //   sendToDiscord(discord.apiKey, values.character, msg);
-    // }
+    const discord: any = store.getState().discord;
+    if (discord.apiKey) {
+      sendToDiscord(discord.apiKey, values.character, msg);
+    }
   };
 
   return (
@@ -122,10 +110,10 @@ const DramaRoll = () => {
           />
           <TextField
             id="roll"
-            label="Roll"
+            label="Bonus"
             className={classes.textField}
-            value={values.roll}
-            onChange={handleChange("roll")}
+            value={values.bonus}
+            onChange={handleChange("bonus")}
             margin="normal"
           />
         </CardContent>
