@@ -76,7 +76,10 @@ const DramaRoll = () => {
       (res: any) => res.attributes.value
     );
     const resultSet = new Set(rawResults);
-    const bonus = Number.parseInt(values.bonus, 10);
+    let bonus = Number.parseInt(values.bonus, 10);
+    if (isNaN(bonus)) {
+      bonus = 0;
+    }
     const sign = bonus < 0 ? " - " : " + ";
     const msg = `([${rawResults.join(", ")}]${sign}${Math.abs(
       bonus

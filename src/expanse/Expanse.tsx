@@ -1,25 +1,19 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import AddRoll from "../containers/AddRoll";
-import VisibleRollList from "../containers/VisibleRollList";
-import DiscordKey from "../containers/DiscordKey";
-import DramaRoll from "../components/DramaRoll";
+import { connect } from "react-redux";
+import { setExpanseDataLocation } from "../actions";
+import ExpanseMain from "./ExpanseMain";
 
-const useStyles = makeStyles(theme => ({} as any));
+const mapStateToProps = (state: any) => {
+  return {
+    dataLocation: state.expanse.dataLocation ? state.expanse.dataLocation : "",
+    data: state.expanse.data ? state.expanse.data : {}
+  };
+};
 
-export default function Expanse() {
-  const classes: any = useStyles();
+const mapDispatchToProps = (dispatch: any) => ({
+  onSave: (dataLocation: any) => dispatch(setExpanseDataLocation(dataLocation))
+});
 
-  return (
-    <Container maxWidth="lg" className={classes.container}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <DramaRoll />
-        </Grid>
-      </Grid>
-    </Container>
-  );
-}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ExpanseMain);

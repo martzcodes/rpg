@@ -123,7 +123,7 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <Router basename="/rpg">
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
