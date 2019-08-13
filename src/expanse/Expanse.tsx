@@ -4,8 +4,10 @@ import ExpanseMain from "./ExpanseMain";
 
 const mapStateToProps = (state: any) => {
   return {
+    name: state.expanse.name ? state.expanse.name : "",
     dataLocation: state.expanse.dataLocation ? state.expanse.dataLocation : "",
-    data: state.expanse.data ? state.expanse.data : {}
+    data: state.expanse.data ? state.expanse.data : {},
+    discordApiKey: state.discord.apiKey ? state.discord.apiKey : ""
   };
 };
 

@@ -1,22 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createStyles, TextField } from "@material-ui/core";
+import { createStyles } from "@material-ui/core";
 
-import {
-  Theme,
-  makeStyles,
-  Card,
-  CardContent,
-  CardActions,
-  Button
-} from "@material-ui/core";
+import { Theme, makeStyles } from "@material-ui/core";
 
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import DramaRoll from "../components/DramaRoll";
 import MaterialTable from "material-table";
 import ExpanseCharacter from "./character/ExpanseCharacter";
 import ExpanseDrama from "./drama/ExpanseDrama";
+import { sendToDiscord } from "../services/discord";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,15 +35,25 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface State {
+  name: string;
   dataLocation: string;
   data: any;
+  discordApiKey: string;
 }
 
-const ExpanseDataForm = ({ onSave, dataLocation, data }: any) => {
+const ExpanseDataForm = ({
+  onSave,
+  name,
+  dataLocation,
+  data,
+  discordApiKey
+}: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
+    name: name,
     dataLocation: dataLocation,
-    data: data
+    data: data,
+    discordApiKey: discordApiKey
   });
 
   const handleChange = (name: keyof State) => (
@@ -69,6 +72,9 @@ const ExpanseDataForm = ({ onSave, dataLocation, data }: any) => {
         <Grid item xs={12}>
           <ExpanseDrama />
         </Grid>
+        {/* <Grid item xs={12}>
+          <ExpanseFortune />
+        </Grid> */}
         <Grid item xs={12}>
           <MaterialTable
             actions={[
@@ -76,7 +82,11 @@ const ExpanseDataForm = ({ onSave, dataLocation, data }: any) => {
                 icon: "send",
                 tooltip: "Roll",
                 onClick: (event, rowData) => {
-                  console.log(rowData);
+                  const stunt = rowData as any;
+                  const msg = `[${stunt.type}] ${name} spends ${
+                    stunt.cost
+                  } stunt points to ${stunt.name}: ${stunt.description}.`;
+                  sendToDiscord(discordApiKey, name, msg);
                 }
               }
             ]}

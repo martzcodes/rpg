@@ -1,8 +1,6 @@
 import { connect } from "react-redux";
 import { setExpanseRoll } from "../../actions";
 import ExpanseDramaForm from "./ExpanseDramaForm";
-import { number } from "prop-types";
-import { sendToDiscord } from "../../services/discord";
 import { Dice } from "dice-typescript";
 
 const mapStateToProps = (state: any) => {
