@@ -15,6 +15,8 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import DramaRoll from "../components/DramaRoll";
 import MaterialTable from "material-table";
+import ExpanseCharacter from "./character/ExpanseCharacter";
+import ExpanseDrama from "./drama/ExpanseDrama";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,7 +64,10 @@ const ExpanseDataForm = ({ onSave, dataLocation, data }: any) => {
     <Container maxWidth="lg" className={classes.container}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <DramaRoll />
+          <ExpanseCharacter />
+        </Grid>
+        <Grid item xs={12}>
+          <ExpanseDrama />
         </Grid>
         <Grid item xs={12}>
           <MaterialTable

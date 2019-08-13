@@ -55,6 +55,37 @@ export const setDiscord = (apiKey: string) => ({
   apiKey
 });
 
+export const setExpanseCharacter = (name: string, maxFortune: number) => ({
+  type: "SET_EXPANSE_CHARACTER",
+  name,
+  maxFortune
+});
+
+export const setExpanseRoll = (
+  roll: number,
+  dice: any,
+  modifier: number,
+  target: number,
+  sp: number,
+  description: string,
+  msg: string
+) => {
+  const discord: any = store.getState().discord;
+  const expanse: any = store.getState().expanse;
+  if (discord.apiKey) {
+    sendToDiscord(discord.apiKey, expanse.name, msg);
+  }
+  return {
+    type: "SET_EXPANSE_ROLL",
+    roll,
+    dice,
+    modifier,
+    target,
+    sp,
+    description
+  };
+};
+
 export const setExpanseDataLocation = (dataLocation: string) => {
   return function(dispatch: any) {
     return retrieveExpanseData(dataLocation).then((data: any) => {
