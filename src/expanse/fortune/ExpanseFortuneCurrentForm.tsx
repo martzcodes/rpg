@@ -40,20 +40,21 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface State {
-  name: string;
+  maxFortune: number;
+  currentFortune: number;
 }
 
-const ExpanseCharacterForm = ({ onSave, name }: any) => {
+const ExpanseFortuneMaxForm = ({ onSave, maxFortune, currentFortune }: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
-    name: name
+    maxFortune: maxFortune,
+    currentFortune: currentFortune
   });
 
   const handleChange = (name: keyof State) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    console.log(name);
-    setValues({ ...values, [name]: event.target.value });
+    // setValues({ maxFortune: Number.parseInt(event.target.value, 10) });
   };
 
   return (
@@ -63,23 +64,23 @@ const ExpanseCharacterForm = ({ onSave, name }: any) => {
       autoComplete="off"
       onSubmit={e => {
         e.preventDefault();
-        onSave(values.name);
+        onSave(values.maxFortune);
       }}
     >
       <Card className={classes.card}>
         <CardContent>
           <TextField
-            id="name"
-            label="Character Name"
+            id="maxFortune"
+            label="Character Max Fortune"
             className={classes.textField}
-            value={values.name}
-            onChange={handleChange("name")}
+            value={values.maxFortune}
+            onChange={handleChange("maxFortune")}
             margin="normal"
           />
         </CardContent>
         <CardActions>
           <Button size="small" color="primary" type="submit">
-            Save
+            Add Fortune
           </Button>
         </CardActions>
       </Card>
@@ -87,9 +88,9 @@ const ExpanseCharacterForm = ({ onSave, name }: any) => {
   );
 };
 
-ExpanseCharacterForm.propTypes = {
+ExpanseFortuneMaxForm.propTypes = {
   onSave: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired
+  maxFortune: PropTypes.string.isRequired
 };
 
-export default ExpanseCharacterForm;
+export default ExpanseFortuneMaxForm;

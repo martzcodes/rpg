@@ -10,6 +10,8 @@ import MaterialTable from "material-table";
 import ExpanseCharacter from "./character/ExpanseCharacter";
 import ExpanseDrama from "./drama/ExpanseDrama";
 import { sendToDiscord } from "../services/discord";
+import ExpanseFortune from "./fortune/ExpanseFortune";
+import ExpanseFortuneMax from "./fortune/ExpanseFortuneMax";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -66,15 +68,18 @@ const ExpanseDataForm = ({
   return (
     <Container maxWidth="lg" className={classes.container}>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={6}>
           <ExpanseCharacter />
+        </Grid>
+        <Grid item xs={6}>
+          <ExpanseFortuneMax />
         </Grid>
         <Grid item xs={12}>
           <ExpanseDrama />
         </Grid>
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <ExpanseFortune />
-        </Grid> */}
+        </Grid>
         <Grid item xs={12}>
           <MaterialTable
             actions={[

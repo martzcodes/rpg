@@ -107,7 +107,7 @@ const ExpanseDramaForm = ({
         </CardContent>
         <CardActions>
           <Button size="small" color="primary" type="submit">
-            Save
+            Roll and Send
           </Button>
         </CardActions>
       </Card>
@@ -116,8 +116,7 @@ const ExpanseDramaForm = ({
 };
 
 ExpanseDramaForm.propTypes = {
-  onSave: PropTypes.func.isRequired,
-  character: PropTypes.string.isRequired
+  onSave: PropTypes.func.isRequired
 };
 
 export default ExpanseDramaForm;

@@ -1,11 +1,26 @@
 const expanse = (state = {}, action: any) => {
   switch (action.type) {
     case "SET_EXPANSE_CHARACTER":
-      console.log(action);
       return {
         ...state,
-        name: action.name,
-        maxFortune: action.maxFortune
+        name: action.name
+      };
+    case "SET_EXPANSE_MAX_FORTUNE":
+      if ((state as any).maxFortune !== action.maxFortune) {
+        return {
+          ...state,
+          maxFortune: action.maxFortune,
+          currentFortune: action.maxFortune
+        };
+      } else {
+        return {
+          ...state
+        };
+      }
+    case "SET_EXPANSE_CURRENT_FORTUNE":
+      return {
+        ...state,
+        currentFortune: action.currentFortune
       };
     case "SET_EXPANSE_ROLL":
       return {
@@ -17,9 +32,12 @@ const expanse = (state = {}, action: any) => {
         sp: action.sp,
         description: action.description
       };
-    case "SET_EXPANSE_CURRENT_FORTUNE":
+    case "SET_EXPANSE_FORTUNE_SPENT":
       return {
         ...state,
+        roll: action.roll,
+        dice: action.dice,
+        sp: action.sp,
         currentFortune: action.currentFortune
       };
     case "SET_EXPANSE_DATA_LOCATION":

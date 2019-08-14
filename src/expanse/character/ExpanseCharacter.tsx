@@ -4,14 +4,12 @@ import ExpanseCharacterForm from "./ExpanseCharacterForm";
 
 const mapStateToProps = (state: any) => {
   return {
-    name: state.expanse.name ? state.expanse.name : "",
-    maxFortune: state.expanse.maxFortune ? state.expanse.maxFortune : 0
+    name: state.expanse.name ? state.expanse.name : ""
   };
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onSave: (name: string, maxFortune: number) =>
-    dispatch(setExpanseCharacter(name, maxFortune))
+  onSave: (name: string) => dispatch(setExpanseCharacter(name))
 });
 
 export default connect(

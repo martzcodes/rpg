@@ -35,25 +35,34 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     card: {
       //   maxWidth: 345
+    },
+    current: {
+      ...theme.typography.button,
+      backgroundColor: theme.palette.background.paper,
+      padding: theme.spacing(1)
     }
   })
 );
 
 interface State {
-  name: string;
+  maxFortune: number;
+  currentFortune: number;
 }
 
-const ExpanseCharacterForm = ({ onSave, name }: any) => {
+const ExpanseFortuneMaxForm = ({ onSave, maxFortune, currentFortune }: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
-    name: name
+    maxFortune: maxFortune,
+    currentFortune: currentFortune
   });
 
   const handleChange = (name: keyof State) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    console.log(name);
-    setValues({ ...values, [name]: event.target.value });
+    setValues({
+      ...values,
+      maxFortune: Number.parseInt(event.target.value, 10)
+    });
   };
 
   return (
@@ -63,19 +72,22 @@ const ExpanseCharacterForm = ({ onSave, name }: any) => {
       autoComplete="off"
       onSubmit={e => {
         e.preventDefault();
-        onSave(values.name);
+        onSave(values.maxFortune);
       }}
     >
       <Card className={classes.card}>
         <CardContent>
           <TextField
-            id="name"
-            label="Character Name"
+            id="maxFortune"
+            label="Character Max Fortune"
             className={classes.textField}
-            value={values.name}
-            onChange={handleChange("name")}
+            value={values.maxFortune}
+            onChange={handleChange("maxFortune")}
             margin="normal"
           />
+          <div className={classes.current}>
+            {`Current Fortune: ${values.currentFortune}`}
+          </div>
         </CardContent>
         <CardActions>
           <Button size="small" color="primary" type="submit">
@@ -87,9 +99,9 @@ const ExpanseCharacterForm = ({ onSave, name }: any) => {
   );
 };
 
-ExpanseCharacterForm.propTypes = {
+ExpanseFortuneMaxForm.propTypes = {
   onSave: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired
+  maxFortune: PropTypes.number.isRequired
 };
 
-export default ExpanseCharacterForm;
+export default ExpanseFortuneMaxForm;

@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createStyles, TextField } from "@material-ui/core";
+import {
+  createStyles,
+  Radio,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel
+} from "@material-ui/core";
 
 import {
   Theme,
@@ -35,6 +42,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     card: {
       //   maxWidth: 345
+    },
+    target: {
+      ...theme.typography.button,
+      backgroundColor: theme.palette.background.paper,
+      padding: theme.spacing(1)
     }
   })
 );
@@ -42,30 +54,71 @@ const useStyles = makeStyles((theme: Theme) =>
 interface State {
   name: string;
   modifier: number;
+  dice: number[];
+  newDice: number[];
+  spendTotal: number;
   target: number;
-  description: string;
+  currentFortune: number;
+  maxFortune: number;
 }
 
 const ExpanseFortuneForm = ({
   onSave,
   name,
   modifier,
+  dice,
   target,
-  description
+  currentFortune,
+  maxFortune
 }: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
     name: name,
     modifier: modifier,
+    dice: dice,
+    newDice: [...dice],
+    spendTotal: 0,
     target: target,
-    description: description
+    currentFortune: currentFortune,
+    maxFortune: maxFortune
   });
 
-  const handleChange = (name: keyof State) => (
-    event: React.ChangeEvent<HTMLInputElement>
+  const handleChange = (diceInd: number) => (
+    event: React.ChangeEvent<unknown>
   ) => {
-    console.log(name);
-    setValues({ ...values, [name]: event.target.value });
+    const tempDice = [...values.newDice];
+    const diceValue = Number.parseInt(
+      `${(event.target as HTMLInputElement).value}`,
+      10
+    );
+    tempDice[diceInd] = diceValue;
+    let spendTotal = 0;
+    tempDice.forEach((roll, ind) => {
+      if (roll !== values.dice[ind]) {
+        spendTotal += roll;
+        if (ind === 2) {
+          spendTotal += roll;
+        }
+      }
+    });
+    setValues({ ...values, newDice: tempDice, spendTotal: spendTotal });
+  };
+
+  const stuntPoints = () => {
+    const resultSet = new Set(values.newDice);
+    if (resultSet.size <= 2) {
+      return values.newDice[2];
+    } else {
+      return 0;
+    }
+  };
+
+  const rollTotal = () => {
+    let total = Number.parseInt(`${values.modifier}`, 10);
+    values.newDice.forEach(roll => {
+      total += roll;
+    });
+    return total;
   };
 
   return (
@@ -75,39 +128,180 @@ const ExpanseFortuneForm = ({
       autoComplete="off"
       onSubmit={e => {
         e.preventDefault();
-        onSave(values.name, values.modifier, values.target, values.description);
+        onSave(
+          values.name,
+          values.modifier,
+          values.target,
+          values.newDice,
+          values.spendTotal,
+          values.currentFortune,
+          values.maxFortune,
+          stuntPoints()
+        );
       }}
     >
       <Card className={classes.card}>
         <CardContent>
-          <TextField
-            id="modifier"
-            label="Modifier"
-            className={classes.textField}
-            value={values.modifier}
-            onChange={handleChange("modifier")}
-            margin="normal"
-          />
-          <TextField
-            id="description"
-            label="Action Description"
-            className={classes.textField}
-            value={values.description}
-            onChange={handleChange("description")}
-            margin="normal"
-          />
-          <TextField
-            id="target"
-            label="Target"
-            className={classes.textField}
-            value={values.target}
-            onChange={handleChange("target")}
-            margin="normal"
-          />
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Dice 1</FormLabel>
+            <RadioGroup
+              aria-label="position"
+              name="position"
+              value={`${values.newDice[0]}`}
+              onChange={handleChange(0)}
+              row
+            >
+              <FormControlLabel
+                value="1"
+                control={<Radio color="primary" disabled={dice[0] > 1} />}
+                label="1"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio color="primary" disabled={dice[0] > 2} />}
+                label="2"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="3"
+                control={<Radio color="primary" disabled={dice[0] > 3} />}
+                label="3"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="4"
+                control={<Radio color="primary" disabled={dice[0] > 4} />}
+                label="4"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="5"
+                control={<Radio color="primary" disabled={dice[0] > 5} />}
+                label="5"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="6"
+                control={<Radio color="primary" disabled={dice[0] > 6} />}
+                label="6"
+                labelPlacement="bottom"
+              />
+            </RadioGroup>
+          </FormControl>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Dice 2</FormLabel>
+            <RadioGroup
+              aria-label="position"
+              name="position"
+              value={`${values.newDice[1]}`}
+              onChange={handleChange(1)}
+              row
+            >
+              <FormControlLabel
+                value="1"
+                control={<Radio color="primary" disabled={dice[1] > 1} />}
+                label="1"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio color="primary" disabled={dice[1] > 2} />}
+                label="2"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="3"
+                control={<Radio color="primary" disabled={dice[1] > 3} />}
+                label="3"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="4"
+                control={<Radio color="primary" disabled={dice[1] > 4} />}
+                label="4"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="5"
+                control={<Radio color="primary" disabled={dice[1] > 5} />}
+                label="5"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="6"
+                control={<Radio color="primary" disabled={dice[1] > 6} />}
+                label="6"
+                labelPlacement="bottom"
+              />
+            </RadioGroup>
+          </FormControl>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Drama</FormLabel>
+            <RadioGroup
+              aria-label="position"
+              name="position"
+              value={`${values.newDice[2]}`}
+              onChange={handleChange(2)}
+              row
+            >
+              <FormControlLabel
+                value="1"
+                control={<Radio color="primary" disabled={dice[2] > 1} />}
+                label="1"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="2"
+                control={<Radio color="primary" disabled={dice[2] > 2} />}
+                label="2"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="3"
+                control={<Radio color="primary" disabled={dice[2] > 3} />}
+                label="3"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="4"
+                control={<Radio color="primary" disabled={dice[2] > 4} />}
+                label="4"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="5"
+                control={<Radio color="primary" disabled={dice[2] > 5} />}
+                label="5"
+                labelPlacement="bottom"
+              />
+              <FormControlLabel
+                value="6"
+                control={<Radio color="primary" disabled={dice[2] > 6} />}
+                label="6"
+                labelPlacement="bottom"
+              />
+            </RadioGroup>
+          </FormControl>
+          <div className={classes.target}>
+            {`${
+              values.spendTotal > 0 ? "New " : " "
+            }Total ${rollTotal()} vs Target ${
+              values.target
+            }: ${stuntPoints()} Stunt Points`}
+          </div>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary" type="submit">
-            Save
+          <Button
+            size="small"
+            color="primary"
+            type="submit"
+            disabled={
+              values.spendTotal === 0 ||
+              values.currentFortune - values.spendTotal <= 0
+            }
+          >
+            Spend {`${values.spendTotal}`} Fortune
           </Button>
         </CardActions>
       </Card>
@@ -116,8 +310,7 @@ const ExpanseFortuneForm = ({
 };
 
 ExpanseFortuneForm.propTypes = {
-  onSave: PropTypes.func.isRequired,
-  character: PropTypes.string.isRequired
+  onSave: PropTypes.func.isRequired
 };
 
 export default ExpanseFortuneForm;

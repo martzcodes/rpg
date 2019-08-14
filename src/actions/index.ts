@@ -55,10 +55,19 @@ export const setDiscord = (apiKey: string) => ({
   apiKey
 });
 
-export const setExpanseCharacter = (name: string, maxFortune: number) => ({
+export const setExpanseCharacter = (name: string) => ({
   type: "SET_EXPANSE_CHARACTER",
-  name,
+  name
+});
+
+export const setExpanseMaxFortune = (maxFortune: number) => ({
+  type: "SET_EXPANSE_MAX_FORTUNE",
   maxFortune
+});
+
+export const setExpanseCurrentFortune = (currentFortune: number) => ({
+  type: "SET_EXPANSE_CURRENT_FORTUNE",
+  currentFortune
 });
 
 export const setExpanseRoll = (
@@ -83,6 +92,27 @@ export const setExpanseRoll = (
     target,
     sp,
     description
+  };
+};
+
+export const setExpanseSpent = (
+  roll: number,
+  dice: any,
+  sp: number,
+  currentFortune: number,
+  msg: string
+) => {
+  const discord: any = store.getState().discord;
+  const expanse: any = store.getState().expanse;
+  if (discord.apiKey) {
+    sendToDiscord(discord.apiKey, expanse.name, msg);
+  }
+  return {
+    type: "SET_EXPANSE_FORTUNE_SPENT",
+    roll,
+    dice,
+    sp,
+    currentFortune
   };
 };
 
