@@ -46,20 +46,29 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface State {
   maxFortune: number;
+  modFortune: number;
 }
 
-const ExpanseFortuneMaxForm = ({ onSave, maxFortune, currentFortune }: any) => {
+const ExpanseFortuneMaxForm = ({
+  onSave,
+  maxFortune,
+  modFortune,
+  currentFortune
+}: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
-    maxFortune: maxFortune
+    maxFortune,
+    modFortune
   });
 
   const handleChange = (name: keyof State) => (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+    const { id, value } = event.target;
+    const val = Number.parseInt(value, 10);
     setValues({
       ...values,
-      maxFortune: Number.parseInt(event.target.value, 10)
+      [id]: val
     });
   };
 
@@ -70,7 +79,18 @@ const ExpanseFortuneMaxForm = ({ onSave, maxFortune, currentFortune }: any) => {
       autoComplete="off"
       onSubmit={e => {
         e.preventDefault();
-        onSave(values.maxFortune);
+        const newCurrentFortune =
+          values.maxFortune !== maxFortune
+            ? values.maxFortune
+            : Math.max(
+                Math.min(currentFortune + values.modFortune, values.maxFortune),
+                0
+              );
+        onSave(values.maxFortune, newCurrentFortune);
+        setValues({
+          ...values,
+          modFortune: 0
+        });
       }}
     >
       <Card className={classes.card}>
@@ -82,6 +102,16 @@ const ExpanseFortuneMaxForm = ({ onSave, maxFortune, currentFortune }: any) => {
             value={values.maxFortune}
             onChange={handleChange("maxFortune")}
             margin="normal"
+            type="number"
+          />
+          <TextField
+            id="modFortune"
+            label="Add/Remove Fortune"
+            className={classes.textField}
+            value={values.modFortune || 0}
+            onChange={handleChange("modFortune")}
+            margin="normal"
+            type="number"
           />
           <div className={classes.current}>
             {`Current Fortune: ${currentFortune}`}

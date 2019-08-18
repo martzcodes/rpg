@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setExpanseMaxFortune } from "../../actions";
+import { setExpanseMaxFortune, setExpanseCurrentFortune } from "../../actions";
 import ExpanseFortuneMaxForm from "./ExpanseFortuneMaxForm";
 
 const mapStateToProps = (state: any) => {
@@ -12,7 +12,10 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  onSave: (maxFortune: number) => dispatch(setExpanseMaxFortune(maxFortune))
+  onSave: (maxFortune: number, currentFortune: number) => {
+    dispatch(setExpanseMaxFortune(maxFortune));
+    dispatch(setExpanseCurrentFortune(currentFortune));
+  }
 });
 
 export default connect(
