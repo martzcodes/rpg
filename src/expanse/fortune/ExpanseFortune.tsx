@@ -7,6 +7,7 @@ const mapStateToProps = (state: any) => {
     name: state.expanse.name ? state.expanse.name : "",
     roll: state.expanse.roll ? state.expanse.roll : 0,
     dice: state.expanse.dice ? state.expanse.dice : [1, 1, 1],
+    newDice: state.expanse.dice ? state.expanse.dice : [1, 1, 1],
     modifier: state.expanse.modifier ? state.expanse.modifier : 0,
     target: state.expanse.target ? state.expanse.target : 0,
     currentFortune: state.expanse.currentFortune

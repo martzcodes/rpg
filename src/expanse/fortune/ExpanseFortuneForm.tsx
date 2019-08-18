@@ -68,6 +68,7 @@ const ExpanseFortuneForm = ({
   name,
   modifier,
   dice,
+  newDice,
   target,
   currentFortune,
   maxFortune
@@ -77,12 +78,28 @@ const ExpanseFortuneForm = ({
     name: name,
     modifier: modifier,
     dice: dice,
-    newDice: [...dice],
+    newDice: newDice,
     spendTotal: 0,
     target: target,
     currentFortune: currentFortune,
     maxFortune: maxFortune
   });
+  if (
+    dice[0] !== values.dice[0] ||
+    dice[1] !== values.dice[1] ||
+    dice[2] !== values.dice[2]
+  ) {
+    setValues({
+      name: name,
+      modifier: modifier,
+      dice: dice,
+      newDice: newDice,
+      spendTotal: 0,
+      target: target,
+      currentFortune: currentFortune,
+      maxFortune: maxFortune
+    });
+  }
 
   const handleChange = (diceInd: number) => (
     event: React.ChangeEvent<unknown>
