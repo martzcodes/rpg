@@ -2,6 +2,7 @@ import store from "..";
 import { sendToDiscord } from "../services/discord";
 import { Dice } from "dice-typescript";
 import { retrieveExpanseData } from "../services/expanse";
+import ICharacterStats from "../expanse/ICharacterStats";
 
 export const addRoll = ({
   name,
@@ -55,9 +56,9 @@ export const setDiscord = (apiKey: string) => ({
   apiKey
 });
 
-export const setExpanseCharacter = (name: string) => ({
+export const setExpanseCharacter = (character: ICharacterStats) => ({
   type: "SET_EXPANSE_CHARACTER",
-  name
+  character
 });
 
 export const setExpanseMaxFortune = (maxFortune: number) => ({

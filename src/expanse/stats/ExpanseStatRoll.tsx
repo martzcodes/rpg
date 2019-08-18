@@ -1,17 +1,23 @@
 import { connect } from "react-redux";
-import { setExpanseRoll } from "../../actions";
-import ExpanseDramaForm from "./ExpanseDramaForm";
+import { setExpanseCharacter, setExpanseRoll } from "../../actions";
+import ExpanseStatRollForm from "./ExpanseStatRollForm";
+import ICharacterStats from "../ICharacterStats";
 import { Dice } from "dice-typescript";
 
 const mapStateToProps = (state: any) => {
   return {
     name: state.expanse.name ? state.expanse.name : "",
-    roll: state.expanse.roll ? state.expanse.roll : 0,
-    dice: state.expanse.dice ? state.expanse.dice : [],
-    modifier: state.expanse.modifier ? state.expanse.modifier : 0,
-    target: state.expanse.target ? state.expanse.target : 0,
-    sp: state.expanse.sp ? state.expanse.sp : 0,
-    description: state.expanse.description ? state.expanse.description : ""
+    accuracy: state.expanse.accuracy ? state.expanse.accuracy : 0,
+    communication: state.expanse.communication
+      ? state.expanse.communication
+      : 0,
+    constitution: state.expanse.constitution ? state.expanse.constitution : 0,
+    dexterity: state.expanse.dexterity ? state.expanse.dexterity : 0,
+    fighting: state.expanse.fighting ? state.expanse.fighting : 0,
+    intelligence: state.expanse.intelligence ? state.expanse.intelligence : 0,
+    perception: state.expanse.perception ? state.expanse.perception : 0,
+    strength: state.expanse.strength ? state.expanse.strength : 0,
+    willpower: state.expanse.willpower ? state.expanse.willpower : 0
   };
 };
 
@@ -73,4 +79,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ExpanseDramaForm);
+)(ExpanseStatRollForm);

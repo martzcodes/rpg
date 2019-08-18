@@ -12,6 +12,7 @@ import ExpanseDrama from "./drama/ExpanseDrama";
 import { sendToDiscord } from "../services/discord";
 import ExpanseFortune from "./fortune/ExpanseFortune";
 import ExpanseFortuneMax from "./fortune/ExpanseFortuneMax";
+import ExpanseStatRoll from "./stats/ExpanseStatRoll";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -68,11 +69,14 @@ const ExpanseDataForm = ({
   return (
     <Container maxWidth="lg" className={classes.container}>
       <Grid container spacing={3}>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <ExpanseCharacter />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <ExpanseFortuneMax />
+        </Grid>
+        <Grid item xs={12}>
+          <ExpanseStatRoll />
         </Grid>
         <Grid item xs={12}>
           <ExpanseDrama />

@@ -46,14 +46,12 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface State {
   maxFortune: number;
-  currentFortune: number;
 }
 
 const ExpanseFortuneMaxForm = ({ onSave, maxFortune, currentFortune }: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
-    maxFortune: maxFortune,
-    currentFortune: currentFortune
+    maxFortune: maxFortune
   });
 
   const handleChange = (name: keyof State) => (
@@ -86,7 +84,7 @@ const ExpanseFortuneMaxForm = ({ onSave, maxFortune, currentFortune }: any) => {
             margin="normal"
           />
           <div className={classes.current}>
-            {`Current Fortune: ${values.currentFortune}`}
+            {`Current Fortune: ${currentFortune}`}
           </div>
         </CardContent>
         <CardActions>

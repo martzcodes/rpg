@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createStyles, TextField } from "@material-ui/core";
+import { createStyles, TextField, CardHeader } from "@material-ui/core";
 
 import {
   Theme,
@@ -60,6 +60,14 @@ const ExpanseDramaForm = ({
     target: target,
     description: description
   });
+  if (name !== values.name || description !== values.description) {
+    setValues({
+      name: name,
+      modifier: modifier,
+      target: target,
+      description: description
+    });
+  }
 
   const handleChange = (name: keyof State) => (
     event: React.ChangeEvent<HTMLInputElement>
@@ -79,6 +87,7 @@ const ExpanseDramaForm = ({
       }}
     >
       <Card className={classes.card}>
+        <CardHeader title="Manual Roll" />
         <CardContent>
           <TextField
             id="modifier"

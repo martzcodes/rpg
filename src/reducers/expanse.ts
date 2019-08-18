@@ -3,7 +3,16 @@ const expanse = (state = {}, action: any) => {
     case "SET_EXPANSE_CHARACTER":
       return {
         ...state,
-        name: action.name
+        name: action.character.name,
+        accuracy: action.character.accuracy,
+        communication: action.character.communication,
+        constitution: action.character.constitution,
+        dexterity: action.character.dexterity,
+        fighting: action.character.fighting,
+        intelligence: action.character.intelligence,
+        perception: action.character.perception,
+        strength: action.character.strength,
+        willpower: action.character.willpower
       };
     case "SET_EXPANSE_MAX_FORTUNE":
       if ((state as any).maxFortune !== action.maxFortune) {

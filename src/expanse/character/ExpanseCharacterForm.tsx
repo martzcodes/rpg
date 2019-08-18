@@ -41,12 +41,42 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface State {
   name: string;
+  accuracy: number;
+  communication: number;
+  constitution: number;
+  dexterity: number;
+  fighting: number;
+  intelligence: number;
+  perception: number;
+  strength: number;
+  willpower: number;
 }
 
-const ExpanseCharacterForm = ({ onSave, name }: any) => {
+const ExpanseCharacterForm = ({
+  onSave,
+  name,
+  accuracy,
+  communication,
+  constitution,
+  dexterity,
+  fighting,
+  intelligence,
+  perception,
+  strength,
+  willpower
+}: any) => {
   const classes = useStyles();
   const [values, setValues] = React.useState<State>({
-    name: name
+    name: name,
+    accuracy: accuracy,
+    communication: communication,
+    constitution: constitution,
+    dexterity: dexterity,
+    fighting: fighting,
+    intelligence: intelligence,
+    perception: perception,
+    strength: strength,
+    willpower: willpower
   });
 
   const handleChange = (name: keyof State) => (
@@ -63,7 +93,18 @@ const ExpanseCharacterForm = ({ onSave, name }: any) => {
       autoComplete="off"
       onSubmit={e => {
         e.preventDefault();
-        onSave(values.name);
+        onSave({
+          name: values.name,
+          accuracy: values.accuracy,
+          communication: values.communication,
+          constitution: values.constitution,
+          dexterity: values.dexterity,
+          fighting: values.fighting,
+          intelligence: values.intelligence,
+          perception: values.perception,
+          strength: values.strength,
+          willpower: values.willpower
+        });
       }}
     >
       <Card className={classes.card}>
@@ -74,6 +115,78 @@ const ExpanseCharacterForm = ({ onSave, name }: any) => {
             className={classes.textField}
             value={values.name}
             onChange={handleChange("name")}
+            margin="normal"
+          />
+          <TextField
+            id="accuracy"
+            label="Character Accuracy"
+            className={classes.textField}
+            value={values.accuracy}
+            onChange={handleChange("accuracy")}
+            margin="normal"
+          />
+          <TextField
+            id="communication"
+            label="Character Communication"
+            className={classes.textField}
+            value={values.communication}
+            onChange={handleChange("communication")}
+            margin="normal"
+          />
+          <TextField
+            id="constitution"
+            label="Character Constitution"
+            className={classes.textField}
+            value={values.constitution}
+            onChange={handleChange("constitution")}
+            margin="normal"
+          />
+          <TextField
+            id="dexterity"
+            label="Character Dexterity"
+            className={classes.textField}
+            value={values.dexterity}
+            onChange={handleChange("dexterity")}
+            margin="normal"
+          />
+          <TextField
+            id="fighting"
+            label="Character Fighting"
+            className={classes.textField}
+            value={values.fighting}
+            onChange={handleChange("fighting")}
+            margin="normal"
+          />
+          <TextField
+            id="intelligence"
+            label="Character Intelligence"
+            className={classes.textField}
+            value={values.intelligence}
+            onChange={handleChange("intelligence")}
+            margin="normal"
+          />
+          <TextField
+            id="perception"
+            label="Character Perception"
+            className={classes.textField}
+            value={values.perception}
+            onChange={handleChange("perception")}
+            margin="normal"
+          />
+          <TextField
+            id="strength"
+            label="Character Strength"
+            className={classes.textField}
+            value={values.strength}
+            onChange={handleChange("strength")}
+            margin="normal"
+          />
+          <TextField
+            id="willpower"
+            label="Character Willpower"
+            className={classes.textField}
+            value={values.willpower}
+            onChange={handleChange("willpower")}
             margin="normal"
           />
         </CardContent>

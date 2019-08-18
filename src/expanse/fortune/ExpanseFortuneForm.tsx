@@ -6,7 +6,8 @@ import {
   FormControl,
   FormLabel,
   RadioGroup,
-  FormControlLabel
+  FormControlLabel,
+  CardHeader
 } from "@material-ui/core";
 
 import {
@@ -141,6 +142,7 @@ const ExpanseFortuneForm = ({
       }}
     >
       <Card className={classes.card}>
+        <CardHeader title="Fortune Spender" />
         <CardContent>
           <FormControl component="fieldset">
             <FormLabel component="legend">Dice 1</FormLabel>
